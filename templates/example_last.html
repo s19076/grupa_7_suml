@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>{{example_id}}</title>
+    </head>
+    <body>
+        <p>
+            <image src="{{url_for('static',filename = 'images/example_original_%s.jpg'|format(example_id))}}" width="500" height="500" alt="Original"></image>
+            <image src="{{url_for('static',filename = 'images/example_enhanced_%s.jpg'|format(example_id))}}" width="500" height="500" alt="Enhanced"></image>
+        </p>
+        <p>
+            <a href="{{example_id-1}}">
+                <image src="{{url_for('static',filename = 'buttons/previous.jpg')}}" width="150" height="50"></image>
+            </a>
+        </p>
+        <p>
+            <a href="../examples">
+                Examples
+            </a>
+        </p>
+    </body>
+</html>
