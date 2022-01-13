@@ -1,3 +1,5 @@
 Flask==1.1.2
 flask-restplus==0.13.0
 Werkzeug==0.16.1
+flask_wtf==1.0.0
+flask_uploads==0.2.1
