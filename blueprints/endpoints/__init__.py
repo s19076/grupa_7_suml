@@ -34,5 +34,5 @@ def upload_file():
                 os.mkdir(UPLOAD_FOLDER)
 
             file.save(os.path.join(UPLOAD_FOLDER, filename))
-            return redirect("home")
+            return render_template("restore_image.html", filename=os.path.splitext(os.path.basename(filename))[0])
     return render_template("upload_photo.html")
