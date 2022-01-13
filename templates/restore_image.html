@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Restored image</title>
+    </head>
+    <body>
+        <p>
+            <image src="{{url_for('static',filename = 'uploads/%s.jpg'|format(filename))}}"  alt="Original"></image>
+            <image src="{{url_for('static',filename = 'restored/%s_restored.jpg'|format(filename))}}"  alt="Restored"></image>
+        </p>
+        <a href="../home">
+            <p>Home</p>
+        </a>
+    </body>
+</html>
