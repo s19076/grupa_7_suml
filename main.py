@@ -5,6 +5,8 @@ from blueprints.endpoints import blueprint as endpoints
 from blueprints.examples import blueprint as example
 
 app = Flask(__name__)
+app.config["SECRET_KEY"] = "TOKEN"
+
 # app.register_blueprint(documented_endpoint)
 app.register_blueprint(endpoints)
 app.register_blueprint(example)
