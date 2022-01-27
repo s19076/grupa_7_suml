@@ -3,7 +3,7 @@ from flask import Blueprint, render_template, request, redirect
 from werkzeug.utils import secure_filename
 import os
 from config import *
-from utils import allowed_file
+from utils import allowed_file, restore_image
 import nav
 
 blueprint = Blueprint("index", __name__, url_prefix="/")
@@ -41,6 +41,7 @@ def upload_file():
                 os.mkdir(UPLOAD_FOLDER)
 
             file.save(os.path.join(UPLOAD_FOLDER, filename))
+            restore_image(os.path.join(UPLOAD_FOLDER, filename))
             return render_template(
                 "restore_image.html",
                 page_title = "Restore image",
