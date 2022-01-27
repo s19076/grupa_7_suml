@@ -6,17 +6,15 @@
         <link rel="stylesheet" href="{{url_for('static',filename = 'style.css')}}">
     </head>
     <body>
-        <p>
-            <div>
-                <div class="image-container">
-                    <img src="{{url_for('static',filename = 'images/example_original_%s.jpg'|format(example_id))}}" alt="Original">
-                </div>
-                <div class="image-container">
-                    <img src="{{url_for('static',filename = 'images/example_restored_%s.jpg'|format(example_id))}}" alt="Restored">
-                </div>
+        <div class="center">
+            <div class="image-container">
+                <img src="{{url_for('static',filename = 'images/example_original_%s.jpg'|format(example_id))}}" alt="Original">
             </div>
-        </p>
-        <p>
+            <div class="image-container">
+                <img src="{{url_for('static',filename = 'images/example_restored_%s.jpg'|format(example_id))}}" alt="Restored">
+            </div>
+        </div>
+        <div class="center">
         {% if example_id > 0 %}
             <a href="{{example_id-1}}">
                 <img src="{{url_for('static',filename = 'buttons/previous.jpg')}}" width="150" height="50">
@@ -27,7 +25,7 @@
                 <img src="{{url_for('static',filename = 'buttons/next.jpg')}}" width="150" height="50">
             </a>
         {% endif %}
-        </p>
+        </div>
         <p>
             <a href="../examples">
                 Examples

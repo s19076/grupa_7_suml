@@ -2,6 +2,11 @@
     --image-size: 650px;
 }
 
+div.center {
+    display: flex;
+    justify-content: center;
+}
+
 div.image-container {
     display: inline-flex;
     vertical-align: middle;
