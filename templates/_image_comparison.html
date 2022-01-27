@@ -1,8 +1,48 @@
-<div class="center">
-    <div class="image-container">
-        <img src="{{url_for('static',filename = path_original)}}" alt="Original">
-    </div>
-    <div class="image-container">
-        <img src="{{url_for('static',filename = path_restored)}}" alt="Restored">
+<div id="comp_control_bar">
+    <input type="range" id="comp_slider" min="0" max="100">
+    <div id="comp_toggles">
+        <a id="comp_toggle_0" href="" onclick="toggleSlider(); return false">Side by side</a>
+        /
+        <a id="comp_toggle_1" href="" onclick="toggleSlider(); return false">Slider</a>
     </div>
 </div>
+
+<div class="center">
+    <div id="comp_images">
+        <div id="comp_original">
+           <img src="{{url_for('static',filename = path_original)}}" alt="Original">
+        </div>
+        <div id="comp_restored">
+            <img src="{{url_for('static',filename = path_restored)}}" alt="Restored">
+        </div>
+    </div>
+</div>
+
+<script>
+    let sliderActive = false;
+
+    function toggleSlider() {
+        if (sliderActive) {
+            comp_restored.style.clipPath = "";
+            comp_restored.style.gridColumn = "2";
+            comp_slider.style.display = "none";
+        } else {
+            comp_restored.style.gridColumn = "1";
+            comp_slider.style.display = "";
+            slide(comp_slider.value);
+        }
+        sliderActive = !sliderActive;
+        document.getElementById(`comp_toggle_${sliderActive+0}`).style.fontWeight = "bolder";
+        document.getElementById(`comp_toggle_${!sliderActive+0}`).style.fontWeight = "";
+    }
+
+    function slide(percentage) {
+        comp_restored.style.clipPath = `inset(0px 0px 0px ${percentage}%)`;
+    }
+
+    comp_slider.style.width = `${comp_original.clientWidth}px`;
+    comp_slider.style.display = "none";
+    comp_control_bar.style.display = "grid";
+    document.getElementById(`comp_toggle_${sliderActive+0}`).style.fontWeight = "bolder";
+    comp_slider.addEventListener("input", (e) => slide(e.target.value));
+</script>
