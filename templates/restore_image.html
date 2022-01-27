@@ -6,8 +6,8 @@
     </head>
     <body>
         <p>
-            <image src="{{url_for('static',filename = 'uploads/%s'|format(filename_original))}}"  alt="Original"></image>
-            <image src="{{url_for('static',filename = 'restored/%s'|format(filename_restored))}}"  alt="Restored"></image>
+            <img src="{{url_for('static',filename = 'uploads/%s'|format(filename_original))}}"  alt="Original">
+            <img src="{{url_for('static',filename = 'restored/%s'|format(filename_restored))}}"  alt="Restored">
         </p>
         <a href="../home">
             <p>Home</p>

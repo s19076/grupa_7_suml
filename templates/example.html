@@ -6,18 +6,18 @@
     </head>
     <body>
         <p>
-            <image src="{{url_for('static',filename = 'images/example_original_%s.jpg'|format(example_id))}}" width="650" height="650" alt="Original"></image>
-            <image src="{{url_for('static',filename = 'images/example_restored_%s.jpg'|format(example_id))}}" width="650" height="650" alt="Restored"></image>
+            <img src="{{url_for('static',filename = 'images/example_original_%s.jpg'|format(example_id))}}" width="650" height="650" alt="Original">
+            <img src="{{url_for('static',filename = 'images/example_restored_%s.jpg'|format(example_id))}}" width="650" height="650" alt="Restored">
         </p>
         <p>
         {% if example_id > 0 %}
             <a href="{{example_id-1}}">
-                <image src="{{url_for('static',filename = 'buttons/previous.jpg')}}" width="150" height="50"></image>
+                <img src="{{url_for('static',filename = 'buttons/previous.jpg')}}" width="150" height="50">
             </a>
         {% endif %}
         {% if example_id < max_example_id %}
             <a href="{{example_id+1}}">
-                <image src="{{url_for('static',filename = 'buttons/next.jpg')}}" width="150" height="50"></image>
+                <img src="{{url_for('static',filename = 'buttons/next.jpg')}}" width="150" height="50">
             </a>
         {% endif %}
         </p>
