@@ -15,16 +15,6 @@ def get_home():
     return render_template("home.html", page_title = "Home")
 
 
-@blueprint.route("examples")
-@nav.register_title("Examples", blueprint=blueprint)
-def get_examples():
-    return render_template(
-        "examples.html",
-        page_title = "Examples",
-        nav = nav.make_path(["index.get_home"]),
-    )
-
-
 @blueprint.route("upload", methods=['GET', 'POST'])
 @nav.register_title("Upload photo", blueprint=blueprint)
 def upload_file():
