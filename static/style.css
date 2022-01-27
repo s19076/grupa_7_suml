@@ -1,0 +1,16 @@
+:root {
+    --image-size: 650px;
+}
+
+div.image-container {
+    display: inline-flex;
+    vertical-align: middle;
+    width: var(--image-size);
+    height: var(--image-size);
+}
+
+div.image-container img {
+    margin: auto;
+    max-width: var(--image-size);
+    max-height: var(--image-size);
+}

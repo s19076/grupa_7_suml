@@ -3,11 +3,18 @@
     <head>
         <meta charset="UTF-8">
         <title>{{example_id}}</title>
+        <link rel="stylesheet" href="{{url_for('static',filename = 'style.css')}}">
     </head>
     <body>
         <p>
-            <img src="{{url_for('static',filename = 'images/example_original_%s.jpg'|format(example_id))}}" width="650" height="650" alt="Original">
-            <img src="{{url_for('static',filename = 'images/example_restored_%s.jpg'|format(example_id))}}" width="650" height="650" alt="Restored">
+            <div>
+                <div class="image-container">
+                    <img src="{{url_for('static',filename = 'images/example_original_%s.jpg'|format(example_id))}}" alt="Original">
+                </div>
+                <div class="image-container">
+                    <img src="{{url_for('static',filename = 'images/example_restored_%s.jpg'|format(example_id))}}" alt="Restored">
+                </div>
+            </div>
         </p>
         <p>
         {% if example_id > 0 %}
