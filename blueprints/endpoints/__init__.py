@@ -41,7 +41,7 @@ def upload_file():
                 page_title = "Restore image",
                 nav = nav.make_path(["index.get_home", "index.upload_file"]),
                 path_original = f"uploads/{filename}",
-                path_restored = f"restored/{filename}",
+                path_restored = f"restored/{filename.split('.')[0]}_restored.{filename.split('.')[1]}",
             )
     return render_template(
         "upload_photo.html",
