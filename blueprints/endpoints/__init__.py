@@ -9,6 +9,11 @@ import nav
 blueprint = Blueprint("index", __name__, url_prefix="/")
 
 
+@blueprint.route("/")
+@nav.register_title("Index", blueprint=blueprint)
+def get_index():
+    return redirect("home")
+
 @blueprint.route("home")
 @nav.register_title("Home", blueprint=blueprint)
 def get_home():
