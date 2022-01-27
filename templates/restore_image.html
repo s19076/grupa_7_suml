@@ -2,13 +2,11 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Restored image</title>
+        <title>{{page_title}}</title>
         <link rel="stylesheet" href="{{url_for('static',filename = 'style.css')}}">
     </head>
     <body>
+        {% include '_nav.html' %}
         {% include '_image_comparison.html' %}
-        <a href="../home">
-            <p>Home</p>
-        </a>
     </body>
 </html>

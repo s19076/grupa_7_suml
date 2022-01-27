@@ -1,0 +1,9 @@
+<h1 class="nav">
+    {%- if nav %}
+        {% for url, title in nav %}
+            <a href="{{url}}">{{title}}</a>
+            /
+        {% endfor %}
+    {%- endif %}
+    {{ page_title }}
+</h1>

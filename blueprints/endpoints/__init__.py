@@ -4,28 +4,40 @@ from werkzeug.utils import secure_filename
 import os
 from config import *
 from utils import allowed_file
+import nav
 
 blueprint = Blueprint("index", __name__, url_prefix="/")
 
 
 @blueprint.route("home")
+@nav.register_title("Home", blueprint=blueprint)
 def get_home():
-    return render_template("home.html")
+    return render_template("home.html", page_title = "Home")
 
 
 @blueprint.route("examples")
+@nav.register_title("Examples", blueprint=blueprint)
 def get_examples():
-    return render_template("examples.html")
+    return render_template(
+        "examples.html",
+        page_title = "Examples",
+        nav = nav.make_path(["index.get_home"]),
+    )
 
 
 @blueprint.route("upload", methods=['GET', 'POST'])
+@nav.register_title("Upload photo", blueprint=blueprint)
 def upload_file():
     if request.method == 'POST':
         file = request.files['file']
         # If the user does not select a file, the browser submits an
         # empty file without a filename.
         if file.filename == '':
-            return render_template("upload_photo.html")
+            return render_template(
+                "upload_photo.html",
+                page_title = "Upload photo",
+                nav = nav.make_path(["index.get_home"]),
+            )
 
         if file and allowed_file(file.filename, ALLOWED_EXTENSIONS):
             filename = secure_filename(file.filename)
@@ -36,7 +48,13 @@ def upload_file():
             file.save(os.path.join(UPLOAD_FOLDER, filename))
             return render_template(
                 "restore_image.html",
+                page_title = "Restore image",
+                nav = nav.make_path(["index.get_home", "index.upload_file"]),
                 path_original = f"uploads/{filename}",
                 path_restored = f"restored/{filename}",
             )
-    return render_template("upload_photo.html")
+    return render_template(
+        "upload_photo.html",
+        page_title = "Upload photo",
+        nav = nav.make_path(["index.get_home"]),
+    )
