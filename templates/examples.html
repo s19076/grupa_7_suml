@@ -7,10 +7,10 @@
     </head>
     <body>
         {% include '_nav.html' %}
-        <p class="center">
+        <p class="center-children">
             List of examples:
         </p>
-        <div class="center">
+        <div class="center-children">
             {% for i in range(max_example_id+1) %}
             <a class="round-button" href="{{ url_for('examples.get_example', example_id=i) }}">
                 <p>{{i}}</p>

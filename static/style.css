@@ -14,7 +14,7 @@
     border-radius: 4px;
 }
 
-.center {
+.center-children {
     display: flex;
     justify-content: center;
 }
