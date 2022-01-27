@@ -6,14 +6,9 @@
         <link rel="stylesheet" href="{{url_for('static',filename = 'style.css')}}">
     </head>
     <body>
-        <div class="center">
-            <div class="image-container">
-                <img src="{{url_for('static',filename = 'images/example_original_%s.jpg'|format(example_id))}}" alt="Original">
-            </div>
-            <div class="image-container">
-                <img src="{{url_for('static',filename = 'images/example_restored_%s.jpg'|format(example_id))}}" alt="Restored">
-            </div>
-        </div>
+        {%- set path_original = 'images/example_original_%s.jpg'|format(example_id) %}
+        {%- set path_restored = 'images/example_restored_%s.jpg'|format(example_id) %}
+        {% include '_image_comparison.html' %}
         <div class="center">
         {%- if example_id > 0 %}
             <a href="{{example_id-1}}">

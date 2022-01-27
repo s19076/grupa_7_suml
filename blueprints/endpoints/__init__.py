@@ -36,7 +36,7 @@ def upload_file():
             file.save(os.path.join(UPLOAD_FOLDER, filename))
             return render_template(
                 "restore_image.html",
-                filename_original = filename,
-                filename_restored = filename,
+                path_original = f"uploads/{filename}",
+                path_restored = f"restored/{filename}",
             )
     return render_template("upload_photo.html")
