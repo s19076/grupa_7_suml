@@ -3,14 +3,17 @@
     <head>
         <meta charset="UTF-8">
         <title>{{page_title}}</title>
+        <link rel="stylesheet" href="{{url_for('static',filename = 'style.css')}}">
     </head>
     <body>
         {% include '_nav.html' %}
-        <a href="examples">
-            <p>Check examples!!</p>
-        </a>
-        <a href="upload">
-            <p>Restore image</p>
-        </a>
+        <div class="center">
+            <a class="round-button" href="examples">
+                <p>Check examples!!</p>
+            </a>
+            <a class="round-button" href="upload">
+                <p>Restore image</p>
+            </a>
+        </div>
     </body>
 </html>

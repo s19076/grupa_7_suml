@@ -2,7 +2,19 @@
     --image-size: 650px;
 }
 
-div.center {
+.round-button {
+    display: inline-block;
+
+    padding: 1em;
+    margin: 1em;
+
+    text-decoration: none;
+
+    border: 1px solid black;
+    border-radius: 4px;
+}
+
+.center {
     display: flex;
     justify-content: center;
 }

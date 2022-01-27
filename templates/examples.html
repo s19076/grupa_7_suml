@@ -3,16 +3,19 @@
     <head>
         <meta charset="UTF-8">
         <title>{{page_title}}</title>
+        <link rel="stylesheet" href="{{url_for('static',filename = 'style.css')}}">
     </head>
     <body>
         {% include '_nav.html' %}
-        <p>
+        <p class="center">
             List of examples:
         </p>
-        {% for i in range(max_example_id+1) %}
-        <a href="{{ url_for('examples.get_example', example_id=i) }}">
-            <p>{{i}}</p>
-        </a>
-        {% endfor %}
+        <div class="center">
+            {% for i in range(max_example_id+1) %}
+            <a class="round-button" href="{{ url_for('examples.get_example', example_id=i) }}">
+                <p>{{i}}</p>
+            </a>
+            {% endfor %}
+        </div>
     </body>
 </html>
