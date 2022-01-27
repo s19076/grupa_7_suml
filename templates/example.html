@@ -19,11 +19,15 @@
             <a href="{{example_id-1}}">
                 <img src="{{url_for('static',filename = 'buttons/previous.jpg')}}" width="150" height="50">
             </a>
+        {%- else %}
+            <div style="width: 150px; height: 50px;"></div>
         {%- endif %}
         {%- if example_id < max_example_id %}
             <a href="{{example_id+1}}">
                 <img src="{{url_for('static',filename = 'buttons/next.jpg')}}" width="150" height="50">
             </a>
+        {%- else %}
+            <div style="width: 150px; height: 50px;"></div>
         {%- endif %}
         </div>
         <p>
