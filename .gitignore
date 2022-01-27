@@ -132,4 +132,4 @@ dmypy.json
 # Other
 static/uploads/
 static/restored/
-mode/
+model/
