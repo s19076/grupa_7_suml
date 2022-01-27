@@ -15,16 +15,16 @@
             </div>
         </div>
         <div class="center">
-        {% if example_id > 0 %}
+        {%- if example_id > 0 %}
             <a href="{{example_id-1}}">
                 <img src="{{url_for('static',filename = 'buttons/previous.jpg')}}" width="150" height="50">
             </a>
-        {% endif %}
-        {% if example_id < max_example_id %}
+        {%- endif %}
+        {%- if example_id < max_example_id %}
             <a href="{{example_id+1}}">
                 <img src="{{url_for('static',filename = 'buttons/next.jpg')}}" width="150" height="50">
             </a>
-        {% endif %}
+        {%- endif %}
         </div>
         <p>
             <a href="../examples">
