@@ -1,21 +1,24 @@
 """This module has some functions related to machine learning model"""
 # pylint: disable=no-member, line-too-long
+from typing import NoReturn
 import argparse
 import os
-from typing import NoReturn
-
 import cv2
 import facexlib.utils
+import torch.cuda
+from realesrgan import RealESRGANer
+from torch.hub import download_url_to_file
+from basicsr.archs.rrdbnet_arch import RRDBNet
 from basicsr.utils import imwrite
 from gfpgan import GFPGANer
-from torch.hub import download_url_to_file
-
-from config import (ALIGNED, ARCH, BACKGROUND_MODEL_NAME, CHANNEL, EXTENSION,
-                    ONLY_CENTER_FACE, PASTE_BACK, RESTORE_FOLDER, UPSCALE)
+from config import RESTORE_FOLDER, UPSCALE, ARCH, CHANNEL, ALIGNED, ONLY_CENTER_FACE, PASTE_BACK, \
+    EXTENSION
 
 FACEXLIB_DETECTION_MODEL_URL = "https://github.com/xinntao/facexlib/releases/download/v0.1.0/detection_Resnet50_Final.pth"
 GFPGAN_MODEL_URL = "https://github.com/TencentARC/GFPGAN/releases/download/v0.2.0/GFPGANCleanv1-NoCE-C2.pth"
+REALESREGANER_MODEL_URL = "hhttps://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.1/RealESRGAN_x2plus.pth"
 GFPGAN_MODEL_PATH = "model/face_model/GFPGANCleanv1-NoCE-C2.pth"
+REALESRGANER_MODEL_PATH = "model/background_model/RealEsrGAN_x2plus.pth"
 
 
 def download_models() -> NoReturn:
@@ -23,14 +26,17 @@ def download_models() -> NoReturn:
     if not os.path.exists(GFPGAN_MODEL_PATH):
         os.makedirs(os.path.dirname(GFPGAN_MODEL_PATH), exist_ok=True)
         download_url_to_file(GFPGAN_MODEL_URL, GFPGAN_MODEL_PATH)
+
+    if not os.path.exists(REALESRGANER_MODEL_PATH):
+        os.makedirs(os.path.dirname(REALESRGANER_MODEL_PATH), exist_ok=True)
+        download_url_to_file(REALESREGANER_MODEL_URL, REALESRGANER_MODEL_PATH)
+
     facexlib.utils.load_file_from_url(FACEXLIB_DETECTION_MODEL_URL, model_dir="facexlib/weights")
 
 
 # pylint: disable=unused-argument, too-many-arguments, too-many-locals
 def restore_image(img_path: str,
                   output_dir: str = RESTORE_FOLDER,
-                  bg_upsampler_model: str = BACKGROUND_MODEL_NAME,
-                  model_path: str = GFPGAN_MODEL_PATH,
                   upscale: int = UPSCALE,
                   arch: str = ARCH,
                   channel: int = CHANNEL,
@@ -48,9 +54,6 @@ def restore_image(img_path: str,
     output_dir: str
         Directory, where restored image should be saved
         default = `RESTORE_FOLDER` from `config.py`
-    bg_upsampler_model: str
-        Name of a model for background restoration
-        default = `BACKGROUND_MODEL_NAME` from `config.py`
     model_path: str
         Path for GFPGAN model for face restoration
         default = `GFPGAN_MODEL_PATH` from `config.py`
@@ -86,10 +89,29 @@ def restore_image(img_path: str,
         output_dir = output_dir[:-1]
     os.makedirs(output_dir, exist_ok=True)
 
-    bg_upsampler = None
+    if torch.cuda.is_available():
+        model = RRDBNet(num_in_ch=3, num_out_ch=3, num_feat=64, num_block=23, num_grow_ch=32, scale=2)
+        bg_upsampler = RealESRGANer(
+            scale=2,
+            model_path=REALESRGANER_MODEL_PATH,
+            model=model,
+            tile=400,
+            tile_pad=10,
+            pre_pad=0,
+            half=True)
+    else:
+        # bg_upsampler = RealESRGANer(
+        #   scale=2,
+        #  model_path=REALESRGANER_MODEL_PATH,
+        # model=model,
+        # tile=400,
+        # tile_pad=10,
+        # pre_pad=0,
+        # half=False) # need to set False in CPU mode
+        bg_upsampler = None
 
     restorer = GFPGANer(
-        model_path=model_path,
+        model_path=GFPGAN_MODEL_PATH,
         upscale=upscale,
         arch=arch,
         channel_multiplier=channel,
@@ -108,7 +130,7 @@ def restore_image(img_path: str,
     if restored_img is not None:
         # get image extension
         if ext == "auto":
-            extension = os.path.splitext(img_name)[1].removeprefix('.')
+            extension = img_name.split('.')[1]
 
         else:
             extension = ext
