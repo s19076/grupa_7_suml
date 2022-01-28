@@ -18,4 +18,4 @@ RUN python model.py download-models
 
 COPY . .
 
-CMD ["python3", "main.py"]
+CMD FLASK_DEBUG=1 FLASK_APP=main flask run -h 0.0.0.0
