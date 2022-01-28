@@ -54,12 +54,13 @@ def upload_file():
 
             file.save(os.path.join(UPLOAD_FOLDER, filename))
             restore_image(os.path.join(UPLOAD_FOLDER, filename))
+            filename_split = os.path.splitext(filename)
             return render_template(
                 "restore_image.html",
                 page_title="Restore image",
                 nav=nav.make_path(["index.get_home", "index.upload_file"]),
                 path_original=f"uploads/{filename}",
-                path_restored=f"restored/{filename.split('.')[0]}_restored.{filename.split('.')[1]}",
+                path_restored=f"restored/{filename_split[0]}_restored.{filename_split[1]}",
             )
     return render_template(
         "upload_photo.html",
