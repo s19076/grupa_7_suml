@@ -13,7 +13,7 @@ def register_title(title: str, *, blueprint: t.Optional[Blueprint] = None) -> t.
         _nav_titles[endpoint] = title
         return func
     return _reg
-    
+
 
 def get_title(endpoint: str) -> t.Optional[str]:
     return _nav_titles.get(endpoint)

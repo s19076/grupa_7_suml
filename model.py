@@ -78,6 +78,6 @@ if __name__ == "__main__":
 
     args = ap.parse_args()
     {
-        "download-models": lambda: download_models(),
+        "download-models": download_models,
         "restore-image": lambda: restore_image(args.image_path),
     }[args.cmd]()

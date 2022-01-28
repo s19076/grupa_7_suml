@@ -29,4 +29,3 @@ def get_example(example_id):
         example_id = example_id,
         max_example_id = MAX_EXAMPLE_ID,
     )
-
