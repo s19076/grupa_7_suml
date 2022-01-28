@@ -1,6 +1,6 @@
-import subprocess
 import os
 import cv2
+from torch.hub import download_url_to_file
 from basicsr.utils import imwrite
 from gfpgan import GFPGANer
 
@@ -10,12 +10,11 @@ def allowed_file(filename, allowed_extensions):
            filename.rsplit('.', 1)[1].lower() in allowed_extensions
 
 
-def get_face_model():
-    if not os.path.exists(path="model/face_model/GFPGANCleanv1-NoCE-C2.pth"):
-        subprocess.run(["wget",
-                        "https://github.com/TencentARC/GFPGAN/releases/download/v0.2.0/GFPGANCleanv1-NoCE-C2.pth",
-                        "-P",
-                        "model/face_model"])
+def get_face_model(path="model/face_model/GFPGANCleanv1-NoCE-C2.pth"):
+    if not os.path.exists(path):
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        download_url_to_file("https://github.com/TencentARC/GFPGAN/releases/download/v0.2.0/GFPGANCleanv1-NoCE-C2.pth",
+                             path)
 
 
 def restore_image(img_path: str,
