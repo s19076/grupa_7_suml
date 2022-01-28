@@ -13,6 +13,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN sed -n '/^-/p; /^torch/p' requirements.txt | pip install -r /dev/stdin
 RUN pip install -r requirements.txt
 
+COPY model.py model.py
+RUN python model.py download-models
+
 COPY . .
 
 CMD ["python3", "main.py"]
