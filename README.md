@@ -1,10 +1,16 @@
 # grupa_7_suml
 
+This web app can be used for improving the quality of old or
+low resolution photos of faces. Face restoration is performed
+by [GFPGAN](https://github.com/TencentARC/GFPGAN).
+
 How to run
 ==========
 
 Run with Docker
 ---------------
+
+Install Docker: <https://docs.docker.com/get-started/>
 
 Build the image:
 ```
