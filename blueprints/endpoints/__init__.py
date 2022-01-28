@@ -6,8 +6,8 @@ from werkzeug.utils import secure_filename
 
 import nav
 from config import ALLOWED_EXTENSIONS, UPLOAD_FOLDER
-from model import restore_image
 from utils import allowed_file
+from model import restore_image
 
 blueprint = Blueprint("index", __name__, url_prefix="/")
 
