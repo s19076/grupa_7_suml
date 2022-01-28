@@ -1,4 +1,6 @@
 # grupa_7_suml
+[![python lint](https://github.com/s19076/grupa_7_suml/actions/workflows/pylint.yml/badge.svg)](https://github.com/s19076/grupa_7_suml/blob/main/.github/workflows/pylint.yml)
+[![docker](https://github.com/s19076/grupa_7_suml/actions/workflows/docker-image.yml/badge.svg)](https://github.com/s19076/grupa_7_suml/blob/main/.github/workflows/docker-image.yml)
 
 This web app can be used for improving the quality of old or
 low resolution photos of faces. Face restoration is performed
