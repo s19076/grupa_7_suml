@@ -108,7 +108,7 @@ def restore_image(img_path: str,
     if restored_img is not None:
         # get image extension
         if ext == "auto":
-            extension = img_name.split('.')[1]
+            extension = os.path.splitext(img_name)[1].removeprefix('.')
 
         else:
             extension = ext
