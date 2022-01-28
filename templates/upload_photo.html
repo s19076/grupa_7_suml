@@ -1,4 +1,5 @@
 <!doctype html>
+<html lang="en">
 <head>
 <title>{{page_title}}</title>
 <link rel="stylesheet" href="{{url_for('static',filename = 'style.css')}}">
@@ -6,9 +7,11 @@
 <body>
 {%- include '_nav.html' %}
 
-<div class="center-children">
+<div id="content" class="center-children">
     <form method=post enctype=multipart/form-data>
-        <input type=file name=file>
-        <input type=submit value=Restore>
+        <input type=file name=file><br>
+        <div style="text-align: center">
+            <input class="round-button" type=submit value=Restore>
+        </div>
     </form>
 </div>

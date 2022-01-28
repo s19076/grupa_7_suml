@@ -9,22 +9,24 @@
         {% include '_nav.html' %}
         {%- set path_original = 'images/example_original_%s.jpg'|format(example_id) %}
         {%- set path_restored = 'images/example_restored_%s.jpg'|format(example_id) %}
-        {% include '_image_comparison.html' %}
-        <div class="center-children">
-        {%- if example_id > 0 %}
-            <a href="{{example_id-1}}">
-                <img src="{{url_for('static',filename = 'buttons/previous.jpg')}}" width="150" height="50">
-            </a>
-        {%- else %}
-            <div style="width: 150px; height: 50px;"></div>
-        {%- endif %}
-        {%- if example_id < max_example_id %}
-            <a href="{{example_id+1}}">
-                <img src="{{url_for('static',filename = 'buttons/next.jpg')}}" width="150" height="50">
-            </a>
-        {%- else %}
-            <div style="width: 150px; height: 50px;"></div>
-        {%- endif %}
+        <div id="content">
+            {% include '_image_comparison.html' %}
+            <div class="center-children">
+            {%- if example_id > 0 %}
+                <a href="{{example_id-1}}">
+                    <img src="{{url_for('static',filename = 'buttons/previous.jpg')}}" width="150" height="50">
+                </a>
+            {%- else %}
+                <div style="width: 150px; height: 50px;"></div>
+            {%- endif %}
+            {%- if example_id < max_example_id %}
+                <a href="{{example_id+1}}">
+                    <img src="{{url_for('static',filename = 'buttons/next.jpg')}}" width="150" height="50">
+                </a>
+            {%- else %}
+                <div style="width: 150px; height: 50px;"></div>
+            {%- endif %}
+            </div>
         </div>
     </body>
 </html>
