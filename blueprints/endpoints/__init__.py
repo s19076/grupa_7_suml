@@ -3,7 +3,8 @@ from flask import Blueprint, render_template, request, redirect
 from werkzeug.utils import secure_filename
 import os
 from config import *
-from utils import allowed_file, restore_image
+from utils import allowed_file
+from model import restore_image
 import nav
 
 blueprint = Blueprint("index", __name__, url_prefix="/")
