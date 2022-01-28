@@ -16,7 +16,7 @@ from config import RESTORE_FOLDER, UPSCALE, ARCH, CHANNEL, ALIGNED, ONLY_CENTER_
 
 FACEXLIB_DETECTION_MODEL_URL = "https://github.com/xinntao/facexlib/releases/download/v0.1.0/detection_Resnet50_Final.pth"
 GFPGAN_MODEL_URL = "https://github.com/TencentARC/GFPGAN/releases/download/v0.2.0/GFPGANCleanv1-NoCE-C2.pth"
-REALESREGANER_MODEL_URL = "hhttps://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.1/RealESRGAN_x2plus.pth"
+REALESREGANER_MODEL_URL = "https://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.1/RealESRGAN_x2plus.pth"
 GFPGAN_MODEL_PATH = "model/face_model/GFPGANCleanv1-NoCE-C2.pth"
 REALESRGANER_MODEL_PATH = "model/background_model/RealEsrGAN_x2plus.pth"
 
