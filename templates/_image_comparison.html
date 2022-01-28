@@ -10,7 +10,7 @@
 <div class="center-children">
     <div id="comp_images">
         <div id="comp_original">
-           <img src="{{url_for('static',filename = path_original)}}" alt="Original">
+            <img src="{{url_for('static',filename = path_original)}}" alt="Original">
         </div>
         <div id="comp_restored">
             <img src="{{url_for('static',filename = path_restored)}}" alt="Restored">
@@ -20,6 +20,11 @@
 
 <script>
     let sliderActive = false;
+
+    function copyImgSize(imgFrom, imgTo) {
+        imgTo.width = imgFrom.width;
+        imgTo.height = imgFrom.height;
+    }
 
     function toggleSlider() {
         if (sliderActive) {
@@ -39,6 +44,10 @@
     function slide(percentage) {
         comp_restored.style.clipPath = `inset(0px 0px 0px ${percentage}%)`;
     }
+
+    // make both images the same size for better comparison
+    const restoredImg = comp_restored.querySelector("img");
+    restoredImg.addEventListener("load", () => copyImgSize(restoredImg, comp_original.querySelector("img")));
 
     comp_slider.style.width = `${comp_original.clientWidth}px`;
     comp_slider.style.display = "none";
