@@ -21,6 +21,16 @@ def get_home():
     return render_template("home.html", page_title = "Home")
 
 
+@blueprint.route("webcam")
+@nav.register_title("Restore from webcam", blueprint=blueprint)
+def get_upload_webcam():
+    return render_template(
+        "upload_webcam.html",
+        page_title = "Restore from webcam"
+        nav = nav.make_path(["index.get_home"]),
+    )
+
+
 @blueprint.route("upload", methods=['GET', 'POST'])
 @nav.register_title("Upload photo", blueprint=blueprint)
 def upload_file():

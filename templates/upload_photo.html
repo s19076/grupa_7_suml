@@ -5,10 +5,4 @@
 </head>
 <body>
 {%- include '_nav.html' %}
-
-<div class="center-children">
-    <form method=post enctype=multipart/form-data>
-        <input type=file name=file>
-        <input type=submit value=Restore>
-    </form>
-</div>
+{%- include '_upload_form.html' %}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>{{page_title}}</title>
+        <link rel="stylesheet" href="{{url_for('static',filename = 'style.css')}}">
+    </head>
+    <body>
+        {% include '_nav.html' %}
+        <div style="display: none">
+            {% include '_upload_form.html' %}
+        </div>
+        <div class="center-children">
+            <span id="capture_error"></span>
+            <video id="capture_video"></video>
+            <canvas id="capture_canvas" style="display: none"></canvas>
+            <button id="capture_button">Capture</button>
+        </div>
+
+<script>
+capture_button.onclick = function() {
+    capture_canvas.width = capture_video.videoWidth;
+    capture_canvas.height = capture_video.videoHeight;
+    capture_canvas.getContext("2d").drawImage(capture_video, 0, 0, capture_canvas.width, capture_canvas.height);
+    new Promise(resolve => capture_canvas.toBlob(resolve, "image/png"))
+        .then(blob => {
+            const file = new File([blob], "image.png", {type: "image/png"});
+            const transfer = new DataTransfer();
+            transfer.items.add(file);
+            upload_form_file.files = transfer.files;
+            upload_form.submit();
+        });
+}
+
+if (navigator.mediaDevices === undefined) {
+    capture_video.style.display = "none";
+    capture_button.style.display = "none";
+    capture_error.textContent = "Error: failed to find a camera";
+}
+
+navigator.mediaDevices.getUserMedia({video: true})
+    .then(stream => { capture_video.srcObject = stream; capture_video.play(); })
+    .catch(e => console.log(e));
+</script>
+
+    </body>
+</html>
