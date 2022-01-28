@@ -24,6 +24,8 @@ Start a new container:
 docker run --name suml-container -i -t -p 5000:5000 suml
 ```
 
+You can access the app by visiting <https://localhost:5000/>.
+
 Run directly
 ------------
 
@@ -37,3 +39,5 @@ Run the app:
 ```shell script
 python main.py
 ```
+
+You can access the app by visiting <https://localhost:5000/>.
