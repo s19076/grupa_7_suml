@@ -9,9 +9,9 @@ def allowed_file(file_name: str, allowed_extensions: Set[str]) -> bool:
 
     Parameters
     ----------
-    file_name, str
+    file_name: str
         path to file which should be checked
-    allowed_extensions, Set[str]
+    allowed_extensions: Set[str]
         Set of allowed extensions
 
     Returns
