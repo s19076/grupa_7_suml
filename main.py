@@ -1,4 +1,4 @@
-# main.py
+"""Main"""
 from flask import Flask
 from model import download_models
 from blueprints.endpoints import blueprint as endpoints

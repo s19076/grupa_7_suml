@@ -1,8 +1,8 @@
-# blueprints/endpoints/__init__.py
+"""Blueprints endpoints for index `/`"""
+import os
 from flask import Blueprint, render_template, request, redirect
 from werkzeug.utils import secure_filename
-import os
-from config import *
+from config import ALLOWED_EXTENSIONS, UPLOAD_FOLDER
 from utils import allowed_file
 from model import restore_image
 import nav
@@ -13,17 +13,26 @@ blueprint = Blueprint("index", __name__, url_prefix="/")
 @blueprint.route("/")
 @nav.register_title("Index", blueprint=blueprint)
 def get_index():
+    """
+    Redirect to `/home` page
+    """
     return redirect("home")
 
 @blueprint.route("home")
 @nav.register_title("Home", blueprint=blueprint)
 def get_home():
+    """
+    Render a template for `/home` endpoint
+    """
     return render_template("home.html", page_title = "Home")
 
 
 @blueprint.route("upload", methods=['GET', 'POST'])
 @nav.register_title("Upload photo", blueprint=blueprint)
 def upload_file():
+    """
+    Render a template for `/upload` endpoint"
+    """
     if request.method == 'POST':
         file = request.files.get('file')
         # If the user does not select a file, the browser submits an
