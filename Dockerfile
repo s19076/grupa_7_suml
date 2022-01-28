@@ -14,7 +14,7 @@ RUN sed -n '/^-/p; /^torch/p' requirements.txt | pip install -r /dev/stdin
 RUN pip install -r requirements.txt
 
 COPY model.py model.py
-RUN python model.py download-models
+# RUN python model.py download-models
 
 COPY . .
 
