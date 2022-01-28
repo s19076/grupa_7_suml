@@ -9,6 +9,9 @@
 
 <div id="content" class="center-children">
     <form method=post enctype=multipart/form-data>
+        {%- if error %}
+            <div class="error-box">{{ error | e }}</div>
+        {%- endif %}
         <input type=file name=file><br>
         <div style="text-align: center">
             <input class="round-button" type=submit value=Restore>

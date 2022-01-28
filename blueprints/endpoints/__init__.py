@@ -25,14 +25,15 @@ def get_home():
 @nav.register_title("Upload photo", blueprint=blueprint)
 def upload_file():
     if request.method == 'POST':
-        file = request.files['file']
+        file = request.files.get('file')
         # If the user does not select a file, the browser submits an
         # empty file without a filename.
-        if file.filename == '':
+        if file is None or file.filename == '':
             return render_template(
                 "upload_photo.html",
                 page_title = "Upload photo",
                 nav = nav.make_path(["index.get_home"]),
+                error = "You must select a file",
             )
 
         if file and allowed_file(file.filename, ALLOWED_EXTENSIONS):

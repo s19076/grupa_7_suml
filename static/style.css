@@ -26,17 +26,27 @@ a {
     color: #eee;
 }
 
-.round-button {
-    display: inline-block;
+.error-box::before {
+    content: "⚠️";
+}
 
+.error-box {
+    border: 1px solid #fb4343;
+}
+
+.round-button, .error-box {
     padding: 1em;
     margin: 1em;
+    border-radius: 4px;
+}
+
+.round-button {
+    display: inline-block;
 
     text-decoration: none;
 
     background-color: white;
     border: 1px solid var(--primary-color);
-    border-radius: 4px;
 }
 
 .center-children {
