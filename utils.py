@@ -1,8 +1,13 @@
 import os
 import cv2
+import facexlib.utils
 from torch.hub import download_url_to_file
 from basicsr.utils import imwrite
 from gfpgan import GFPGANer
+
+FACEXLIB_DETECTION_MODEL_URL = "https://github.com/xinntao/facexlib/releases/download/v0.1.0/detection_Resnet50_Final.pth"
+GFPGAN_MODEL_URL = "https://github.com/TencentARC/GFPGAN/releases/download/v0.2.0/GFPGANCleanv1-NoCE-C2.pth"
+GFPGAN_MODEL_PATH = "model/face_model/GFPGANCleanv1-NoCE-C2.pth"
 
 
 def allowed_file(filename, allowed_extensions):
@@ -10,17 +15,17 @@ def allowed_file(filename, allowed_extensions):
            filename.rsplit('.', 1)[1].lower() in allowed_extensions
 
 
-def get_face_model(path="model/face_model/GFPGANCleanv1-NoCE-C2.pth"):
-    if not os.path.exists(path):
-        os.makedirs(os.path.dirname(path), exist_ok=True)
-        download_url_to_file("https://github.com/TencentARC/GFPGAN/releases/download/v0.2.0/GFPGANCleanv1-NoCE-C2.pth",
-                             path)
+def get_face_models():
+    if not os.path.exists(GFPGAN_MODEL_PATH):
+        os.makedirs(os.path.dirname(GFPGAN_MODEL_PATH), exist_ok=True)
+        download_url_to_file(GFPGAN_MODEL_URL, GFPGAN_MODEL_PATH)
+    facexlib.utils.load_file_from_url(FACEXLIB_DETECTION_MODEL_URL, model_dir="facexlib/weights")
 
 
 def restore_image(img_path: str,
                   output_dir: str = "static/restored",
                   bg_upsampler_model: str = "realesrgan",
-                  model_path: str = "model/face_model/GFPGANCleanv1-NoCE-C2.pth",
+                  model_path: str = GFPGAN_MODEL_PATH,
                   upscale: int = 2,
                   arch: str = "clean",
                   channel: int = 2,
