@@ -29,6 +29,7 @@ Run directly
 
 Install required packages:
 ```shell script
+pip install torch==1.10.1+cpu torchvision==0.11.2+cpu torchaudio==0.10.1+cpu -f https://download.pytorch.org/whl/cpu/torch_stable.html
 pip install -r requirements.txt
 ```
 
