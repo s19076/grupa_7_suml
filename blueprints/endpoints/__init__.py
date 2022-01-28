@@ -1,11 +1,13 @@
 """Blueprints endpoints for index `/`"""
 import os
-from flask import Blueprint, render_template, request, redirect
+
+from flask import Blueprint, redirect, render_template, request
 from werkzeug.utils import secure_filename
-from config import ALLOWED_EXTENSIONS, UPLOAD_FOLDER
-from utils import allowed_file
+
 import nav
+from config import ALLOWED_EXTENSIONS, UPLOAD_FOLDER
 from model import restore_image
+from utils import allowed_file
 
 blueprint = Blueprint("index", __name__, url_prefix="/")
 

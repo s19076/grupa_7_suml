@@ -1,15 +1,17 @@
 """This module has some functions related to machine learning model"""
 # pylint: disable=no-member, line-too-long
-from typing import NoReturn
 import argparse
 import os
+from typing import NoReturn
+
 import cv2
 import facexlib.utils
-from torch.hub import download_url_to_file
 from basicsr.utils import imwrite
 from gfpgan import GFPGANer
-from config import RESTORE_FOLDER, BACKGROUND_MODEL_NAME, UPSCALE, ARCH, CHANNEL, ALIGNED, ONLY_CENTER_FACE, PASTE_BACK, \
-    EXTENSION
+from torch.hub import download_url_to_file
+
+from config import (ALIGNED, ARCH, BACKGROUND_MODEL_NAME, CHANNEL, EXTENSION,
+                    ONLY_CENTER_FACE, PASTE_BACK, RESTORE_FOLDER, UPSCALE)
 
 FACEXLIB_DETECTION_MODEL_URL = "https://github.com/xinntao/facexlib/releases/download/v0.1.0/detection_Resnet50_Final.pth"
 GFPGAN_MODEL_URL = "https://github.com/TencentARC/GFPGAN/releases/download/v0.2.0/GFPGANCleanv1-NoCE-C2.pth"

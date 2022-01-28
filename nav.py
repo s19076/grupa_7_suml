@@ -9,8 +9,9 @@ the titles for all endpoints you want to use with the ``register_title``
 decorator first.
 """
 
-from typing import List, Tuple, Optional, Callable
-from flask import url_for, Blueprint
+from typing import Callable, List, Optional, Tuple
+
+from flask import Blueprint, url_for
 
 _nav_titles = {}
 

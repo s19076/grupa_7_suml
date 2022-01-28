@@ -1,5 +1,6 @@
 """Main"""
 from flask import Flask
+
 from blueprints.endpoints import blueprint as endpoints
 from blueprints.examples import blueprint as example
 from model import download_models

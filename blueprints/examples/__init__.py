@@ -1,5 +1,6 @@
 """Blueprints endopits for `/examples`"""
 from flask import Blueprint, render_template
+
 import nav
 
 blueprint = Blueprint("examples", __name__, url_prefix="/examples")
