@@ -1,5 +1,5 @@
 """This module has some functions related to machine learning model"""
-#pylint: disable=no-member, line-too-long
+# pylint: disable=no-member, line-too-long
 from typing import NoReturn
 import argparse
 import os
@@ -23,7 +23,8 @@ def download_models() -> NoReturn:
         download_url_to_file(GFPGAN_MODEL_URL, GFPGAN_MODEL_PATH)
     facexlib.utils.load_file_from_url(FACEXLIB_DETECTION_MODEL_URL, model_dir="facexlib/weights")
 
-#pylint: disable=unused-argument, too-many-arguments, too-many-locals
+
+# pylint: disable=unused-argument, too-many-arguments, too-many-locals
 def restore_image(img_path: str,
                   output_dir: str = RESTORE_FOLDER,
                   bg_upsampler_model: str = BACKGROUND_MODEL_NAME,

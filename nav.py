@@ -10,12 +10,14 @@ def register_title(title: str, *, blueprint: t.Optional[Blueprint] = None) -> t.
 
     This title will be displayed in the navigation bar.
     """
+
     def _reg(func):
         endpoint = func.__name__
         if blueprint is not None:
             endpoint = f"{blueprint.name}.{endpoint}"
         _nav_titles[endpoint] = title
         return func
+
     return _reg
 
 

@@ -14,9 +14,9 @@ def get_examples():
     """
     return render_template(
         "examples.html",
-        page_title = "Examples",
-        nav = nav.make_path(["index.get_home"]),
-        max_example_id = MAX_EXAMPLE_ID,
+        page_title="Examples",
+        nav=nav.make_path(["index.get_home"]),
+        max_example_id=MAX_EXAMPLE_ID,
     )
 
 
@@ -35,8 +35,8 @@ def get_example(example_id: int):
 
     return render_template(
         "example.html",
-        page_title = example_id,
-        nav = nav.make_path(["index.get_home", "examples.get_examples"]),
-        example_id = example_id,
-        max_example_id = MAX_EXAMPLE_ID,
+        page_title=example_id,
+        nav=nav.make_path(["index.get_home", "examples.get_examples"]),
+        example_id=example_id,
+        max_example_id=MAX_EXAMPLE_ID,
     )
